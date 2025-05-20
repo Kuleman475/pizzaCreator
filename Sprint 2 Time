@@ -4,7 +4,7 @@
 1 hour setting up heading and pizza size and sauce
 1 hour radio buttons
 1.5 hour toppings
-1 hour submit button
+3 hours saving and loading and navigating to another page
 
 
 
@@ -14,5 +14,6 @@ https://www.npmjs.com/package/react-native-simple-radio-button
 https://docs.expo.dev/tutorial/build-a-screen/
 https://react.school/ui/button
 https://www.freecodecamp.org/news/how-to-store-data-locally-in-react-native-expo/#heading-what-is-local-storage
+https://reactnative.dev/docs/navigation
 
 

@@ -5,15 +5,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function SavedPizza() {
   const [savedPizzas, setSavedPizzas] = useState([]);
 
-  useEffect(() => {
     const loadPizzas = async () => {
-      const jsonValue = await AsyncStorage.getItem('pizzaRecipes'); // <-- plural!
+      const jsonValue = await AsyncStorage.getItem('pizzaRecipes');
       if (jsonValue) {
         setSavedPizzas(JSON.parse(jsonValue));
       }
     };
     loadPizzas();
-  }, []);
+  
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
