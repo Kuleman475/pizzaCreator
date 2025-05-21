@@ -63,7 +63,7 @@ function PizzaMaker({ navigation }) {
       const updatedRecipes = [...recipes, newRecipe];
       await AsyncStorage.setItem('pizzaRecipes', JSON.stringify(updatedRecipes));
 
-      Alert.alert("Saved!", `Pizza saved:\nSize: ${size}\nSauce: ${sauce}\nToppings: ${toppings.join(", ")}`);
+      Alert.alert("Pizza Saved!", `\nSize: ${size}\n\nSauce: ${sauce}\n\nToppings: ${toppings.join(", ")}`);
 
   };
 
@@ -77,8 +77,8 @@ function PizzaMaker({ navigation }) {
         radio_props={sizeOptions}
         initial={-1}
         onPress={(value) => setSize(value)}
-        buttonColor={'#000'}
-        selectedButtonColor={'#007AFF'}
+        buttonColor={'black'}
+        selectedButtonColor={'blue'}
         labelStyle={{ marginRight: 10 }}
         style={styles.radio}
         formHorizontal={true}
@@ -89,8 +89,8 @@ function PizzaMaker({ navigation }) {
         radio_props={sauceOptions}
         initial={-1}
         onPress={(value) => setSauce(value)}
-        buttonColor={'#000'}
-        selectedButtonColor={'#007AFF'}
+        buttonColor={'black'}
+        selectedButtonColor={'blue'}
         labelStyle={{ marginRight: 10 }}
         style={styles.radio}
       />

@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, ScrollView, Pressable, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
 
 export default function SavedPizza() {
   const [savedPizzas, setSavedPizzas] = useState([]);
@@ -13,6 +15,14 @@ export default function SavedPizza() {
     };
     loadPizzas();
   
+    async function clear() {
+    await AsyncStorage.clear();
+    setSavedPizzas([]);
+    Alert.alert("Pizzas Cleared!");
+    await loadPizzas();
+};
+loadPizzas();
+
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -22,15 +32,18 @@ export default function SavedPizza() {
       ) : (
         savedPizzas.map((pizza, index) => (
           <View key={index} style={styles.pizzaCard}>
-            <Text style={styles.text}><Text style={styles.bold}>Pizza #{index + 1}</Text></Text>
-            <Text style={styles.text}><Text style={styles.bold}>Size:</Text> {pizza.size}</Text>
-            <Text style={styles.text}><Text style={styles.bold}>Sauce:</Text> {pizza.sauce}</Text>
-            <Text style={styles.text}><Text style={styles.bold}>Toppings:</Text> {pizza.toppings.join(', ')}</Text>
+            <Text style={styles.text}>Pizza #{index + 1}</Text>
+            <Text style={styles.text}>Size: {pizza.size}</Text>
+            <Text style={styles.text}>Sauce: {pizza.sauce}</Text>
+            <Text style={styles.text}>Toppings: {pizza.toppings.join(', ')}</Text>
           </View>
         ))
       )}
+        <Pressable onPress={clear} style={styles.clearButton}>
+          <Text style={styles.clearText}>Clear All Saved Pizzas</Text>
+        </Pressable>
     </ScrollView>
-  );
+  );s
 }
 
 const styles = StyleSheet.create({
@@ -38,6 +51,7 @@ const styles = StyleSheet.create({
     padding: 20,
     alignItems: 'center',
     backgroundColor: 'lavender',
+    marginBottom: 50,
   },
   header: {
     fontSize: 36,
@@ -51,14 +65,29 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     marginBottom: 20,
     width: '100%',
-    borderColor: '#888',
-    borderWidth: 2,
+    borderColor: 'black',
+    borderWidth: 3,
   },
   text: {
-    fontSize: 20,
+    fontSize: 25,
     marginVertical: 2,
+
   },
-  bold: {
+  clearButton: {
+    padding: 20,
+    fontSize: 50,
+    backgroundColor: 'darkslategrey',
+    borderColor: 'black',
+    borderRadius: 10,
+    borderWidth: 3,
+    marginBottom: 50,
+  },
+  clearText: {
+    fontSize: 30,
+    textAlign: 'center',
     fontWeight: 'bold',
-  },
+    color: 'lightgrey',
+    fontStyle: 'italic'
+  }
+
 });
