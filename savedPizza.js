@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, Pressable, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
-
 export default function SavedPizza() {
   const [savedPizzas, setSavedPizzas] = useState([]);
 
@@ -22,7 +20,6 @@ export default function SavedPizza() {
     await loadPizzas();
 };
 loadPizzas();
-
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -71,7 +68,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 25,
     marginVertical: 2,
-
   },
   clearButton: {
     padding: 20,
