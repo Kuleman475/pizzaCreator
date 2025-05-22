@@ -55,8 +55,6 @@ function PizzaMaker({ navigation }) {
       sauce,
       toppings,
     };
-
-   
       const existing = await AsyncStorage.getItem('pizzaRecipes');
       const recipes = existing ? JSON.parse(existing) : [];
 
