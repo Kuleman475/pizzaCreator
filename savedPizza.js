@@ -5,14 +5,16 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function SavedPizza() {
   const [savedPizzas, setSavedPizzas] = useState([]);
 
-    const loadPizzas = async () => {
+// Load Saved Pizzas  
+  const loadPizzas = async () => {
       const jsonValue = await AsyncStorage.getItem('pizzaRecipes');
       if (jsonValue) {
         setSavedPizzas(JSON.parse(jsonValue));
       }
     };
     loadPizzas();
-  
+
+// Function to clear all Stored Pizzas
     async function clear() {
     await AsyncStorage.clear();
     setSavedPizzas([]);
@@ -27,6 +29,7 @@ loadPizzas();
       {savedPizzas.length === 0 ? (
         <Text style={styles.text}>No saved pizzas found.</Text>
       ) : (
+// Show all Pizzas where each Pizza is in it's own Card
         savedPizzas.map((pizza, index) => (
           <View key={index} style={styles.pizzaCard}>
             <Text style={styles.text}>Pizza #{index + 1}</Text>
@@ -36,6 +39,8 @@ loadPizzas();
           </View>
         ))
       )}
+
+{/* Button to Clear all Pizzas */}
         <Pressable onPress={clear} style={styles.clearButton}>
           <Text style={styles.clearText}>Clear All Saved Pizzas</Text>
         </Pressable>
@@ -43,6 +48,7 @@ loadPizzas();
   );s
 }
 
+// Stylesheet for Saved Pizza's
 const styles = StyleSheet.create({
   container: {
     padding: 20,
@@ -85,5 +91,4 @@ const styles = StyleSheet.create({
     color: 'lightgrey',
     fontStyle: 'italic'
   }
-
 });

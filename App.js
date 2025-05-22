@@ -9,17 +9,20 @@ import SavedPizza from './savedPizza';
 
 const Stack = createNativeStackNavigator();
 
+// Create Pizza Function
 function PizzaMaker({ navigation }) {
   const [size, setSize] = useState(null);
   const [sauce, setSauce] = useState(null);
   const [toppings, setToppings] = useState([]);
 
+// Size selections
   const sizeOptions = [
     { label: 'Small', value: 'Small' },
     { label: 'Medium', value: 'Medium' },
     { label: 'Large', value: 'Large' },
   ];
 
+// Sauce selections
   const sauceOptions = [
     { label: 'Marinara', value: 'Marinara' },
     { label: 'Barbeque', value: 'Barbeque' },
@@ -29,6 +32,7 @@ function PizzaMaker({ navigation }) {
     { label: 'No Sauce', value: 'No Sauce' },
   ];
 
+// Topping selections
   const toppingsOptions = [
     "Pepperoni", "Sausage", "Chicken", "Ham",
     "Turkey", "Green Peppers", "Red Peppers", "Onions", "Olives",
@@ -44,6 +48,9 @@ function PizzaMaker({ navigation }) {
     }
   }
 
+// When Submit Button is clicked add recipe to AsyncStorage,
+// As well as Alert the user of the Pizza Recipe or alert if missing an item.
+  
   const submitOrder = async () => {
     if (!size || !sauce || toppings.length === 0) {
       Alert.alert("Oops!", "Please select a size, sauce, and at least one topping.");
@@ -70,6 +77,7 @@ function PizzaMaker({ navigation }) {
       <View style={styles.container}>
       <Text style={styles.header}>Pizza Creator</Text>
 
+{/* Size Selector */}
       <Text style={styles.subheader}>Size:</Text>
       <RadioForm
         radio_props={sizeOptions}
@@ -82,6 +90,7 @@ function PizzaMaker({ navigation }) {
         formHorizontal={true}
       />
 
+{/* Sauce Selector */}
       <Text style={styles.subheader}>Sauce:</Text>
       <RadioForm
         radio_props={sauceOptions}
@@ -93,6 +102,7 @@ function PizzaMaker({ navigation }) {
         style={styles.radio}
       />
 
+{/* Toppings Selection */}
       <Text style={styles.subheader}>Toppings:</Text>
       <View style={styles.toppingsGrid}>
         {toppingsOptions.map((topping) => (
@@ -109,10 +119,12 @@ function PizzaMaker({ navigation }) {
         ))}
       </View>
 
+{/* Submit Pizza order and save it to the Phone */}
   <Pressable onPress={submitOrder} style={styles.submit}>
     <Text style={styles.submitText}>Submit</Text>
   </Pressable>
 
+{/* Change to Saved Pizzas Screen */}
   <Pressable onPress={() => navigation.navigate("SavedPizza")} style={styles.submit}>
     <Text style={styles.submitText}>View Saved Pizzas</Text>
   </Pressable>
@@ -125,6 +137,8 @@ function PizzaMaker({ navigation }) {
 
 export default function App() {
   return (
+
+// Navigation to different Screens
     <NavigationContainer>
       <Stack.Navigator initialRouteName="PizzaMaker">
         <Stack.Screen name="PizzaMaker" component={PizzaMaker} />
@@ -134,6 +148,7 @@ export default function App() {
   );
 }
 
+// Stylesheet for Creating Pizzas
 const styles = StyleSheet.create({
   scrollContainer: {
     flexGrow: 1,
